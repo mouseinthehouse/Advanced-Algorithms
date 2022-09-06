@@ -10,8 +10,10 @@ def longestSubarray(nums):
         length = max(length, R - L + 1)
     return length
 
-# Find length of minimum size subarray where the sum is 
-# greater than or equal to the target: O(n)
+# Find length of the minimum size subarray where the sum is 
+# greater than or equal to the target.
+# Assume all values in the input are positive.
+# O(n)
 def shortestSubarray(nums, target):
     L, total = 0, 0
     length = float("inf")
