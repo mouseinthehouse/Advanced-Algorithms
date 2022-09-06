@@ -30,9 +30,9 @@ public class SlidingWindowVariableSize {
             }
         }
 
-        if (length ==  Double.POSITIVE_INFINITY) {
+        if (length ==  Integer.MAX_VALUE) {
             return 0;
         } 
-        return (int) length;
+        return length;
     }
 }

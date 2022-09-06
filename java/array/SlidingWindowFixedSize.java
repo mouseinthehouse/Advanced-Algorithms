@@ -20,7 +20,7 @@ public class SlidingWindowFixedSize {
     // Same problem using sliding window.
     // O(n)
     public static boolean closeDuplicates(int[] nums, int k) {
-        HashSet<Integer> window = new HashSet<>(); //Cur window of size <= k
+        HashSet<Integer> window = new HashSet<>(); // Cur window of size <= k
         int L = 0;
 
         for (int R = 0; R < nums.length; R++) {
