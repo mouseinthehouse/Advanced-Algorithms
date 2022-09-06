@@ -6,11 +6,11 @@ public class SlidingWindowVariableSize {
         int length = 0;
         int L = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[L] != nums[i]) {
-                L = i;
+        for (int R = 0; R < nums.length; R++) {
+            if (nums[L] != nums[R]) {
+                L = R;
             }
-            length = Math.max(length, i - L + 1);
+            length = Math.max(length, R - L + 1);
         }
         return length;
     }
@@ -19,12 +19,12 @@ public class SlidingWindowVariableSize {
     // greater than or equal to the target: O(n)
     public static int shortestSubarray(int[] nums, int target) {
         int L = 0, total = 0;
-        double length = Double.POSITIVE_INFINITY;
+        int length = Integer.MAX_VALUE;
 
-        for (int i = 0; i < nums.length; i++) {
-            total += nums[i];
+        for (int R = 0; R < nums.length; R++) {
+            total += nums[R];
             while (total >= target) {
-                length = Math.min(i - L + 1, length);
+                length = Math.min(R - L + 1, length);
                 total -= nums[L];
                 L++;
             }

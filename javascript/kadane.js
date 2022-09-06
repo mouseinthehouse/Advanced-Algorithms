@@ -2,10 +2,10 @@
 function bruteForce(nums) {
     let maxSum = nums[0];
 
-    for (let i = 0; i < nums.length; i++) { 
+    for (let L = 0; L < nums.length; L++) { 
         let curSum = 0;
-        for (let j = i; j < nums.length; j++) {
-            curSum += nums[j];
+        for (let R = L; R < nums.length; R++) {
+            curSum += nums[R];
             maxSum = Math.max(maxSum, curSum);
         }    
     }       
@@ -34,23 +34,17 @@ function slidingWindow(nums) {
     let maxL = 0, maxR = 0;
     let L = 0;
 
-    for (let i = 0; i < nums.length; i++) {
+    for (let R = 0; R < nums.length; R++) {
         if (curSum < 0) {
             curSum = 0;
-            L = i;
+            L = R;
         }
-        curSum += nums[i];
+        curSum += nums[R];
         if (curSum > maxSum) {
             maxSum = curSum;
             maxL = L; 
-            maxR = i;     
+            maxR = R;     
         }    
     }    
     return [maxL, maxR];
-}    
-
-let nums = [4, -1, 2, -7, -3, 3, 4];
-console.log(nums);
-console.log(bruteForce(nums));
-console.log(kadanes(nums));
-console.log(slidingWindow(nums));
+}

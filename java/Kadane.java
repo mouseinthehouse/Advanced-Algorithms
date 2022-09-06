@@ -38,26 +38,18 @@ public class Kadane {
         int maxL = 0, maxR = 0;
         int L = 0;
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int R = 0; R < nums.length; R++) {
             if (curSum < 0) {
                 curSum = 0;
-                L = i;
+                L = R;
             }
-            curSum += nums[i];
+            curSum += nums[R];
             if (curSum > maxSum) {
                 maxSum = curSum;
                 maxL = L; 
-                maxR = i;     
+                maxR = R;     
             }    
         }    
         return new int[] {maxL, maxR};
     }   
-    
-    public static void main(String[] args) {
-        int[] nums = {4, -1, 2, -7, -3, 3, 4};
-        System.out.println(Arrays.toString(nums));
-        System.out.println(bruteForce(nums));
-        System.out.println(kadanes(nums));
-        System.out.println(Arrays.toString(slidingWindow(nums)));
-    }
 }

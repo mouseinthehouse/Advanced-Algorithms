@@ -4,11 +4,11 @@ function longestSubarray(nums) {
     let length = 0;
     let L = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[L] != nums[i]) {
-            L = i;
+    for (let R = 0; R < nums.length; R++) {
+        if (nums[L] != nums[R]) {
+            L = R;
         }
-        length = Math.max(length, i - L + 1);
+        length = Math.max(length, R - L + 1);
     }
     return length;
 }
@@ -19,10 +19,10 @@ function shortestSubarray(nums, target) {
     let L = 0, total = 0;
     let length = Infinity;
 
-    for (let i = 0; i < nums.length; i++) {
-        total += nums[i];
+    for (let R = 0; R < nums.length; R++) {
+        total += nums[R];
         while (total >= target) {
-            length = Math.min(i - L + 1, length);
+            length = Math.min(R - L + 1, length);
             total -= nums[L];
             L++;
         }

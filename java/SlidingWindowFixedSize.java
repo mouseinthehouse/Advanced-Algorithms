@@ -7,9 +7,9 @@ public class SlidingWindowFixedSize {
     // eachother (i.e. arr[i] == arr[j] and abs(i - j) + 1 <= k).
     // O(n * k)
     public static boolean closeDuplicatesBruteForce(int[] nums, int k) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < Math.min(nums.length, i + k); j++) {
-                if (nums[i] == nums[j]) {
+        for (int L = 0; L < nums.length; L++) {
+            for (int R = L + 1; R < Math.min(nums.length, R + k); R++) {
+                if (nums[L] == nums[R]) {
                     return true;
                 }
             }
@@ -23,15 +23,15 @@ public class SlidingWindowFixedSize {
         HashSet<Integer> window = new HashSet<>(); //Cur window of size <= k
         int L = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (i - L + 1 > k) {
+        for (int R = 0; R < nums.length; R++) {
+            if (R - L + 1 > k) {
                 window.remove(nums[L]);
                 L++;
             }
-            if (window.contains(nums[i])) {
+            if (window.contains(nums[R])) {
                 return true;
             }
-            window.add(nums[i]);
+            window.add(nums[R]);
         }
         return false;
     }
