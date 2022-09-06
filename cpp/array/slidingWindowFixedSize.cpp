@@ -1,7 +1,6 @@
 #include <vector>
 #include <unordered_set>
 #include <algorithm>
-#include <iostream>
 
 using std::vector;
 using std::unordered_set;
@@ -14,7 +13,7 @@ using std::min;
 bool closeDuplicatesBruteForce(vector<int>& nums, int k) {
     int size = static_cast<int>(nums.size());
     for (int L = 0; L < size; L++) {
-        for (int R = L + 1; R < min(size, R + k); R++) {
+        for (int R = L + 1; R < min(size, L + k); R++) {
             if (nums[L] == nums[R]) {
                 return true;
             }
@@ -40,17 +39,4 @@ bool closeDuplicates(vector<int>& nums, int k) {
         window.insert(nums[R]);
     }
     return false;
-}
-
-int main() {
-    vector<int> nums = {2, -1, 4, -7, 4, 3};
-
-// std::cout << bruteForce(nums) << std::endl;
-//     std::cout << kadanes(nums) << std::endl;
-    
-//     for (int n : slidingWindow(nums)) {
-//         std::cout << n << std::endl;
-//     }
-//     return 0;
-
 }

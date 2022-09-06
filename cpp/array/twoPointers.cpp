@@ -1,7 +1,5 @@
 #include <vector>
-#include <string>
-
-#include <climits>
+#include <string>ß
 #include <algorithm>
 #include <iostream>
 
@@ -41,17 +39,3 @@ vector<int> targetSum(vector<int>& nums, int target) {
         }    
     }
 }  
-
-
-int main() {
-    vector<int> nums = {2, -1, 4, -7, 4, 3};
-
-// std::cout << bruteForce(nums) << std::endl;
-//     std::cout << kadanes(nums) << std::endl;
-    
-//     for (int n : slidingWindow(nums)) {
-//         std::cout << n << std::endl;
-//     }
-//     return 0;
-
-}

@@ -1,11 +1,8 @@
 #include <vector>
-#include <unordered_set>
 #include <climits>
 #include <algorithm>
-#include <iostream>
 
 using std::vector;
-using std::unordered_set;
 using std::max;
 using std::min;
 
@@ -38,22 +35,8 @@ int shortestSubarray(vector<int>& nums, int target) {
             L++;
         }
     }
-    if (length ==  INT_MAX) {
+    if (length == INT_MAX) {
         return 0;
     } 
     return length;
-}
-
-
-int main() {
-    vector<int> nums = {2, -1, 4, -7, 4, 3};
-
-// std::cout << bruteForce(nums) << std::endl;
-//     std::cout << kadanes(nums) << std::endl;
-    
-//     for (int n : slidingWindow(nums)) {
-//         std::cout << n << std::endl;
-//     }
-//     return 0;
-
 }

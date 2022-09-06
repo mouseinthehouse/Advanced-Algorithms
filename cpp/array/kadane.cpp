@@ -1,6 +1,5 @@
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 using std::vector;
 using std::max;
@@ -55,16 +54,3 @@ vector<int> slidingWindow(vector<int> nums) {
     }    
     return vector<int>{maxL, maxR};
 }   
-
-int main() {
-    vector<int> nums = {2, -1, 4, -7, 4, 3};
-
-std::cout << bruteForce(nums) << std::endl;
-    std::cout << kadanes(nums) << std::endl;
-    
-    for (int n : slidingWindow(nums)) {
-        std::cout << n << std::endl;
-    }
-    return 0;
-
-}
