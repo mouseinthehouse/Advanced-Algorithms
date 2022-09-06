@@ -22,12 +22,3 @@ def targetSum(nums, target):
             L += 1
         else:
             return [L, R]
-
-# Move all unique values in the array to the front in-place.
-def removeDuplicatesInPlace(nums):
-    L = 1
-    for R in range(1, len(nums)):
-        if nums[R] != nums[R - 1]:
-            nums[L] = nums[R]
-            L += 1
-    return L
