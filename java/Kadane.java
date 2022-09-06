@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Kadane {
     
     // Brute Force: O(n^2)
@@ -49,5 +51,13 @@ public class Kadane {
             }    
         }    
         return new int[] {maxL, maxR};
-    }    
+    }   
+    
+    public static void main(String[] args) {
+        int[] nums = {4, -1, 2, -7, -3, 3, 4};
+        System.out.println(Arrays.toString(nums));
+        System.out.println(bruteForce(nums));
+        System.out.println(kadanes(nums));
+        System.out.println(Arrays.toString(slidingWindow(nums)));
+    }
 }
