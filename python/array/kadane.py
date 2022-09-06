@@ -40,9 +40,3 @@ def slidingWindow(nums):
             maxL, maxR = L, R 
 
     return [maxL, maxR]
-
-nums = [4, -1, 2, -7, -3, 3, 4]
-print(nums)
-print(bruteForce(nums))
-print(kadanes(nums))
-print(slidingWindow(nums))
