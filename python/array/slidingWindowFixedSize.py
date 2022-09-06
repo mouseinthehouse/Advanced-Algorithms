@@ -1,6 +1,6 @@
 # Check if array contains a pair of duplicate values,
 # where the two duplicates are no farther than k positions from 
-# eachother (i.e. arr[i] == arr[j] and abs(i - j) <= k).
+# eachother (i.e. arr[i] == arr[j] and abs(i - j) + 1 <= k).
 # O(n * k)
 def closeDuplicatesBruteForce(nums, k):
     for L in range(len(nums)):
