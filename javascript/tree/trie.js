@@ -1,7 +1,4 @@
-// TEST YOUR CODE HERE:
-// https://leetcode.com/problems/implement-trie-prefix-tree/
 class TrieNode {
-    
     constructor() {
         this.word = false;   // isLeaf
         this.children = new Map();
