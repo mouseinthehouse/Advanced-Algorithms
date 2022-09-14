@@ -14,7 +14,7 @@ class SegmentTree {
             return new SegmentTree(nums[L], L, R);
         }
 
-        let M = (L + R) / 2;
+        let M = Math.floor((L + R) / 2);
         let root = new SegmentTree(0, L, R);
         root.left = SegmentTree.build(nums, L, M);
         root.right =  SegmentTree.build(nums, M + 1, R);
@@ -29,7 +29,7 @@ class SegmentTree {
             return;
         }
 
-        let M = (this.L + this.R) / 2;
+        let M = Math.floor((this.L + this.R) / 2);
         if (index > M) {
             this.right.update(index, val);
         } else {
@@ -45,7 +45,7 @@ class SegmentTree {
             return this.sum;
         }
 
-        let M = (this.L + this.L) / 2;
+        let M = Math.floor((this.L + this.L) / 2);
         if (L > M) {
             return this.right.rangeQuery(L, R);
         } else if (R <= M) {
