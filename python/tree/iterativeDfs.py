@@ -17,13 +17,13 @@ def inorder(root):
     curr = root
 
     while curr or stack:
-        while curr:
+        if curr:
             stack.append(curr)
             curr = curr.left
-        
-        curr = stack.pop()
-        print(curr.val)
-        curr = curr.right
+        else:
+            curr = stack.pop()
+            print(curr.val)
+            curr = curr.right
     return res
 
 # Time and space: O(n)
