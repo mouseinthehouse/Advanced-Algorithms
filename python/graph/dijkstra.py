@@ -1,5 +1,4 @@
-# TEST CODE HERE, its not exactly the same problem so just see if the result looks correct:
-https://leetcode.com/problems/network-delay-time/
+from collections import heapq
 
 # Given a connected graph represented by a list of edges, where
 # edge[0] = src, edge[1] = dst, and edge[2] = weight,
@@ -17,15 +16,13 @@ def shortestPath(edges, n, src):
 
     shortest = {}
     minHeap = [(0, src)]
-    visit = set()
     while minHeap:
         w1, n1 = heapq.heappop(minHeap)
-        if n1 in visit:
+        if n1 in shortest:
             continue
         shortest[n1] = w1
-        visit.add(n1)
 
         for n2, w2 in adj[n1]:
-            if n2 not in visit:
+            if n2 not in shortest:
                 heapq.heappush(minHeap, (w1 + w2, n2))
     return shortest
