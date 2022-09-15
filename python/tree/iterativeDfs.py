@@ -1,9 +1,3 @@
-# TEST HERE:
-https://leetcode.com/problems/binary-tree-inorder-traversal/
-https://leetcode.com/problems/binary-tree-preorder-traversal/
-https://leetcode.com/problems/binary-tree-postorder-traversal/
-# DONT COMMIT THIS BLOCK IN UR CODE U JACKASS
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val, left, right):
@@ -24,10 +18,9 @@ def inorder(root):
             curr = stack.pop()
             print(curr.val)
             curr = curr.right
-    return res
 
 # Time and space: O(n)
-def preorder():
+def preorder(root):
     stack = []
     curr = root
     while curr or stack:
@@ -38,10 +31,9 @@ def preorder():
             curr = curr.left
         else:
             curr = stack.pop()
-    return res
 
 # Time and space: O(n)
-def postorder():
+def postorder(root):
     stack = [root]
     visit = [False]
     while stack:
@@ -56,4 +48,3 @@ def postorder():
                 visit.append(False)
                 stack.append(curr.left)
                 visit.append(False)
-    return res

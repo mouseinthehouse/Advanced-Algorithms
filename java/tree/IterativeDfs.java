@@ -23,14 +23,14 @@ public class IterativeDfs {
         TreeNode curr = root;
 
         while (curr != null || !stack.isEmpty()) {
-            while (curr != null) {
+            if (curr != null) {
                 stack.push(curr);
                 curr = curr.left;
+            } else {
+                curr = stack.pop();
+                System.out.println(curr.val);
+                curr = curr.right;
             }
-
-            curr = stack.pop();
-            System.out.println(curr.val);
-            curr = curr.right;
         }  
     }
     
