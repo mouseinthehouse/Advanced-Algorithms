@@ -8,11 +8,9 @@ public class Dijkstra {
     
     public static Map<Integer, Integer> shortestPath(int[][] edges, int n, int src) {
         Map<Integer, ArrayList<Integer[]>> adj = new HashMap<>();
-
         for (int i = 1; i < n + 1; i++) {
             adj.put(i, new ArrayList<Integer[]>());
         }
-
         for (int[] edge : edges) {
             // s = src, d = dst, w = weight
             int s = edge[0], d = edge[1], w = edge[2];
