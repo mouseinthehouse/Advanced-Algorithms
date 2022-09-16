@@ -14,14 +14,14 @@ function inorder(root) {
     let curr = root;
 
     while (curr != null || stack.length != 0) {
-        while (curr != null) {
+        if (curr != null) {
             stack.push(curr);
             curr = curr.left;
+        } else {
+            curr = stack.pop();
+            console.log(curr.val);
+            curr = curr.right;
         }
-
-        curr = stack.pop();
-        console.log(curr.val);
-        curr = curr.right;
     }  
 }
 
