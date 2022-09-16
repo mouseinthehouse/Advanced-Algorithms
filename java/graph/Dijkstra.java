@@ -1,13 +1,12 @@
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
     
-    public static HashMap shortestPath(int[][] edges, int n, int src) {
+    public static Map<Integer, Integer> shortestPath(int[][] edges, int n, int src) {
         Map<Integer, ArrayList<Integer[]>> adj = new HashMap<>();
 
         for (int i = 1; i < n + 1; i++) {

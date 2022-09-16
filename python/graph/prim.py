@@ -31,9 +31,3 @@ def minimumSpanningTree(edges, n):
             if neighbor not in visit:
                 heapq.heappush(minHeap, [weight, n2, neighbor])
     return mst
-
-edges = [[1, 2, 2], [1, 3, 5], [2, 3, 2]]
-
-print(minimumSpanningTree(edges, 3))
-
-# Result should be: [[1, 2], [2, 3]]
