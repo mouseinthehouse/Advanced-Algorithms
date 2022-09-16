@@ -26,7 +26,7 @@ public:
 
     // Union by height / rank.
     // Return false if already connected, true otherwise.
-    bool uniond(int n1, int n2) {
+    bool union(int n1, int n2) {
         int p1 = find(n1), p2 = find(n2);
         if (p1 == p2) {
             return false;
