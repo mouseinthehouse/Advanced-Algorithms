@@ -1,4 +1,4 @@
-from collections import heapq
+import heapq
 
 # Given a connected graph represented by a list of edges, where
 # edge[0] = src, edge[1] = dst, and edge[2] = weight,
@@ -12,10 +12,10 @@ def shortestPath(edges, n, src):
         
     # s = src, d = dst, w = weight
     for s, d, w in edges:
-        adj[s].append((d, w))
+        adj[s].append([d, w])
 
     shortest = {}
-    minHeap = [(0, src)]
+    minHeap = [[0, src]]
     while minHeap:
         w1, n1 = heapq.heappop(minHeap)
         if n1 in shortest:
@@ -24,5 +24,5 @@ def shortestPath(edges, n, src):
 
         for n2, w2 in adj[n1]:
             if n2 not in shortest:
-                heapq.heappush(minHeap, (w1 + w2, n2))
+                heapq.heappush(minHeap, [w1 + w2, n2])
     return shortest

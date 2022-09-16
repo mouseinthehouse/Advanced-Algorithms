@@ -1,30 +1,39 @@
+import heapq
 
-# Return edges making up the minimum spanning tree.
-def minimumSpanningTree(edges):
+# Given a list of edges of a connected undirected graph,
+# with nodes numbered from 1 to n,
+# return a list edges making up the minimum spanning tree.
+def minimumSpanningTree(edges, n):
     adj = {}
+    for i in range(1, n + 1):
+        adj[i] = []
+    for n1, n2, weight in edges:
+        adj[n1].append([n2, weight])
+        adj[n2].append([n1, weight])
 
-    for src, dst, weight in edges:
-        if src not in adj:
-            adj[src] = []
-        if dst not in adj:
-            adj[dst] = []
-        adj[src].append([dst, weight])
+    # Initialize the heap by choosing a single node
+    # (in this case 1) and pushing all its neighbors.
+    minHeap = []
+    for neighbor, weight in adj[1]:
+        heapq.heappush(minHeap, [weight, 1, neighbor])
 
     mst = []
-    #TODO: fix the src
     visit = set()
-    minHeap [[0, edges[0], edges[1]]]
-    while minHeap:
-        weight, src, dst = heapq.heappop(minHeap)
-        if src in visit:
+    visit.add(1)
+    while len(visit) < n:
+        weight, n1, n2 = heapq.heappop(minHeap)
+        if n2 in visit:
             continue
 
-        mst.append([src, dst])
-        visit.add(src)
-        for neighbor, weight in adj[src]:
+        mst.append([n1, n2])
+        visit.add(n2)
+        for neighbor, weight in adj[n2]:
             if neighbor not in visit:
-                heapq.heappush(minHeap, [weight, src, neighbor])
-
+                heapq.heappush(minHeap, [weight, n2, neighbor])
     return mst
 
-edges = [[0, 1, 5], [1, 2, 5], [2, 3, 5], [1, 3, 5]]
+edges = [[1, 2, 2], [1, 3, 5], [2, 3, 2]]
+
+print(minimumSpanningTree(edges, 3))
+
+# Result should be: [[1, 2], [2, 3]]
