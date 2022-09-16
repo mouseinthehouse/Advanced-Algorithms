@@ -13,8 +13,8 @@ public class Dijkstra {
             adj.put(i, new ArrayList<Integer[]>());
         }
 
-        // s = src, d = dst, w = weight
         for (int[] edge : edges) {
+            // s = src, d = dst, w = weight
             int s = edge[0], d = edge[1], w = edge[2];
             adj.get(s).add(new Integer[] {d, w});
         }
