@@ -1,6 +1,3 @@
-# Course schedule ii is easier than normal topological sort
-# Graph not necessarily connected
-
 # Given a directed acyclical graph, return a valid
 # topological ordering of the graph. 
 def topologicalSort(edges, n):
@@ -28,3 +25,6 @@ def dfs(src, adj, visit, topSort):
 
 edges = [[1,2],[1,3],[2,4],[3,4],[5,6],[6,4],[6,8],[7,8]]
 print(topologicalSort(edges, 8))
+
+# Expected output:
+# [7, 5, 6, 8, 1, 3, 2, 4]
