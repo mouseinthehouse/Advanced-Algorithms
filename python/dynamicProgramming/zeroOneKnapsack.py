@@ -14,11 +14,16 @@ def dfsHelper(i, profit, weight, capacity):
     if i == len(profit):
         return 0
 
+    # Skip item i
     maxProfit = dfsHelper(i + 1, profit, weight, capacity)
+
+    # Include item i
     newCap = capacity - weight[i]
     if newCap >= 0:
         p = profit[i] + dfsHelper(i + 1, profit, weight, newCap)
+        # Compute the max
         maxProfit = max(maxProfit, p)
+
     return maxProfit
 
 
@@ -32,20 +37,21 @@ def memoization(profit, weight, capacity):
     return memoHelper(0, profit, weight, capacity, cache)
 
 def memoHelper(i, profit, weight, capacity, cache):
-    if i == len(profit) or capacity < 0:
+    if i == len(profit):
         return 0
     if cache[i][capacity] != -1:
         return cache[i][capacity]
 
     # Skip item i
-    cache[i][capacity] = dfsHelper(i + 1, profit, weight, capacity)
+    cache[i][capacity] = memoHelper(i + 1, profit, weight, capacity, cache)
     
     # Include item i
     newCap = capacity - weight[i]
-    p = profit[i] + dfsHelper(i + 1, profit, weight, newCap)
-    
-    # Return the maximum
-    cache[i][capacity] = max(cache[i][capacity], p)
+    if newCap >= 0:
+        p = profit[i] + memoHelper(i + 1, profit, weight, newCap, cache)
+        # Compute the max
+        cache[i][capacity] = max(cache[i][capacity], p)
+
     return cache[i][capacity]
 
 
