@@ -22,7 +22,7 @@ function topologicalSort(edges, n) {
 
 function dfs(src, adj, visit, topSort) {
     if (visit.has(src)) {
-        return true;
+        return;
     }
     visit.add(src);
 
@@ -30,5 +30,5 @@ function dfs(src, adj, visit, topSort) {
         dfs(neighbor, adj, visit, topSort);
     }
     topSort.push(src);
-    return false;
+    return;
 }

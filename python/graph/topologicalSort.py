@@ -16,15 +16,9 @@ def topologicalSort(edges, n):
 
 def dfs(src, adj, visit, topSort):
     if src in visit:
-        return True
+        return
     visit.add(src)
     
     for neighbor in adj[src]:
         dfs(neighbor, adj, visit, topSort)
     topSort.append(src)
-
-edges = [[1,2],[1,3],[2,4],[3,4],[5,6],[6,4],[6,8],[7,8]]
-print(topologicalSort(edges, 8))
-
-# Expected output:
-# [7, 5, 6, 8, 1, 3, 2, 4]

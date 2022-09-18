@@ -27,15 +27,15 @@ public class TopologicalSort {
         return topSort; 
     } 
     
-    public static boolean dfs(int src, Map<Integer, ArrayList<Integer>> adj, Set<Integer> visit, List<Integer> topSort) { 
+    public static void dfs(int src, Map<Integer, ArrayList<Integer>> adj, Set<Integer> visit, List<Integer> topSort) { 
         if (visit.contains(src)) {
-            return true; 
+            return; 
         } 
         visit.add(src); 
         for (int neighbor : adj.get(src)) {
             dfs(neighbor, adj, visit, topSort); 
         } 
         topSort.add(src); 
-        return false; 
+        return; 
     } 
 }    
