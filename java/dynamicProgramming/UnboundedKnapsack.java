@@ -8,7 +8,7 @@ import java.util.Arrays;
 // is profit[i] and it's weight is weight[i]. Assume you can
 // only add each item to the bag at most one time. 
 
-public class ZeroOneKnapsack {
+public class UnboundedKnapsack {
     // Brute force Solution
     // Time: O(2^n), Space: O(n)
     // Where n is the number of items.
@@ -27,7 +27,7 @@ public class ZeroOneKnapsack {
         // Include item i
         int newCap = capacity - weight.get(i);
         if (newCap >= 0) {
-            int p = profit.get(i) + dfsHelper(i + 1, profit, weight, newCap);
+            int p = profit.get(i) + dfsHelper(i, profit, weight, newCap);
             // Compute the max
             maxProfit = Math.max(maxProfit, p);
         }
@@ -64,7 +64,7 @@ public class ZeroOneKnapsack {
         // Include item i
         int newCap = capacity - weight.get(i);
         if (newCap >= 0) {
-            int p = profit.get(i) + memoHelper(i + 1, profit, weight, newCap, cache);
+            int p = profit.get(i) + memoHelper(i, profit, weight, newCap, cache);
             // Compute the max
             cache.get(i)[capacity] = Math.max(cache.get(i)[capacity], p);  
         }
@@ -89,7 +89,7 @@ public class ZeroOneKnapsack {
         }
         for (int c = 0; c <= M; c++) {
             if (weight.get(0) <= c) {
-                dp.get(0)[c] = profit.get(0);
+                dp.get(0)[c] = (c / weight.get(0)) * profit.get(0);
             } 
         }
 
@@ -98,7 +98,7 @@ public class ZeroOneKnapsack {
                 int skip = dp.get(i-1)[c];
                 int include = 0;
                 if (c - weight.get(i) >= 0) {
-                    include = profit.get(i) + dp.get(i-1)[c - weight.get(i)];
+                    include = profit.get(i) + dp.get(i)[c - weight.get(i)];
                 }
                 dp.get(i)[c] = Math.max(include, skip);
             }
@@ -114,13 +114,6 @@ public class ZeroOneKnapsack {
         Integer[] dp = new Integer[M+1];
         Arrays.fill(dp, 0);
 
-        // Fill the first row to reduce edge cases
-        for (int c = 0; c <= M; c++) {
-            if (weight.get(0) <= c) {
-                dp[c] = profit.get(0);
-            } 
-        }
-
         for (int i = 1; i < N; i++) {
             Integer[] curRow = new Integer[M+1];
             Arrays.fill(curRow, 0);
@@ -128,7 +121,7 @@ public class ZeroOneKnapsack {
                 int skip = dp[c];
                 int include = 0;
                 if (c - weight.get(i) >= 0) {
-                    include = profit.get(i) + dp[c - weight.get(i)];
+                    include = profit.get(i) + curRow[c - weight.get(i)];
                 }
                 curRow[c] =  Math.max(include, skip);
             }
