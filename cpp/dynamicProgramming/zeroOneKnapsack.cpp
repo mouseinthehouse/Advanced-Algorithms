@@ -18,10 +18,6 @@ using namespace std;
 // Brute force Solution
 // Time: O(2^n), Space: O(n)
 // Where n is the number of items.
-int dfs(vector<int>& profit, vector<int>& weight, int capacity) {
-    return dfsHelper(0, profit, weight, capacity);
-}
-
 int dfsHelper(int i, vector<int>& profit, vector<int>& weight, int capacity) {
     if (i == profit.size()) {
         return 0;
@@ -40,16 +36,13 @@ int dfsHelper(int i, vector<int>& profit, vector<int>& weight, int capacity) {
     return maxProfit;
 } 
 
+int dfs(vector<int>& profit, vector<int>& weight, int capacity) {
+    return dfsHelper(0, profit, weight, capacity);
+}
+
 // Memoization Solution
 // Time: O(n * m), Space: O(n * m)
 // Where n is the number of items & m is the capacity.
-int memoization(vector<int>& profit, vector<int>& weight, int capacity) {
-    // A 2d array, with N rows and M + 1 columns, init with -1's
-    int N = profit.size(), M = capacity;
-    vector<vector<int>> cache(N, vector<int>(M + 1, -1));
-    return memoHelper(0, profit, weight, capacity, cache);
-}
-
 int memoHelper(int i, vector<int>& profit, vector<int>& weight, 
     int capacity, vector<vector<int>>& cache) {
     if (i == profit.size()) {
@@ -71,6 +64,13 @@ int memoHelper(int i, vector<int>& profit, vector<int>& weight,
     }
     return cache[i][capacity];
 } 
+
+int memoization(vector<int>& profit, vector<int>& weight, int capacity) {
+    // A 2d array, with N rows and M + 1 columns, init with -1's
+    int N = profit.size(), M = capacity;
+    vector<vector<int>> cache(N, vector<int>(M + 1, -1));
+    return memoHelper(0, profit, weight, capacity, cache);
+}
 
 
 // Dynamic Programming Solution
@@ -134,7 +134,7 @@ int optimizedDp(vector<int>& profit, vector<int>& weight, int capacity) {
 
 int main() {
     vector<int> p = {4, 4, 7, 1};
-    vector<int> w = {4, 4, 7, 1};
+    vector<int> w = {5, 2, 3, 1};
     int c = 8;
 
     cout << dfs(p, w, c) << endl;
