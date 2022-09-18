@@ -1,20 +1,24 @@
 #include <vector>
 #include <unordered_map>
+#include <utility>
 #include <algorithm>
+#include <iostream>
 
 using std::vector;
 using std::unordered_map;
 using std::max;
+using namespace std;
 
 // Given a list of N items, and a backpack with a
 // limited capacity, return the maximum total profit that 
 // can be contained in the backpack. The i-th item's profit
 // is profit[i] and it's weight is weight[i]. Assume you can
-// only add each item to the bag at most one time. 
+// have an unlimited number of each item available. 
+
 
 // Brute force Solution
-// Time: O(2^n), Space: O(n)
-// Where n is the number of items.
+// Time: O(2^m), Space: O(m)
+// Where m is the capacity.
 int dfs(vector<int>& profit, vector<int>& weight, int capacity) {
     return dfsHelper(0, profit, weight, capacity);
 }
@@ -30,7 +34,7 @@ int dfsHelper(int i, vector<int>& profit, vector<int>& weight, int capacity) {
     // Include item i
     int newCap = capacity - weight[i];
     if (newCap >= 0) {
-        int p = profit[i] + dfsHelper(i + 1, profit, weight, newCap);
+        int p = profit[i] + dfsHelper(i, profit, weight, newCap);
         // Compute the max
         maxProfit = max(maxProfit, p);
     }
@@ -62,7 +66,7 @@ int memoHelper(int i, vector<int>& profit, vector<int>& weight,
     // Include item i
     int newCap = capacity - weight[i];
     if (newCap >= 0) {
-        int p = profit[i] + memoHelper(i + 1, profit, weight, newCap, cache);
+        int p = profit[i] + memoHelper(i, profit, weight, newCap, cache);
         // Compute the max
         cache[i][capacity] = max(cache[i][capacity], p);
     }
@@ -83,7 +87,7 @@ int dp(vector<int>& profit, vector<int>& weight, int capacity) {
     }
     for (int c = 0; c <= M; c++) {
         if (weight[0] <= c) {
-            dp[0][c] = profit[0];
+            dp[0][c] = (c / weight[0]) * profit[0];
         } 
     }
 
@@ -92,7 +96,7 @@ int dp(vector<int>& profit, vector<int>& weight, int capacity) {
             int skip = dp[i-1][c];
             int include = 0;
             if (c - weight[i] >= 0) {
-                include = profit[i] + dp[i-1][c - weight[i]];
+                include = profit[i] + dp[i][c - weight[i]];
             }
             dp[i][c] = max(include, skip);
         }
@@ -107,24 +111,28 @@ int optimizedDp(vector<int>& profit, vector<int>& weight, int capacity) {
     int N = profit.size(), M = capacity;
     vector<int> dp(M + 1, 0);
 
-    // Fill the first row to reduce edge cases
-    for (int c = 0; c <= M; c++) {
-        if (weight[0] <= c) {
-            dp[c] = profit[0];
-        } 
-    }
-
     for (int i = 1; i < N; i++) {
         vector<int> curRow(M + 1, 0);
         for (int c = 1; c <= M; c++) {
             int skip = dp[c];
             int include = 0;
             if (c - weight[i] >= 0) {
-                include = profit[i] + dp[c - weight[i]];
+                include = profit[i] + curRow[c - weight[i]];
             }
             curRow[c] = max(include, skip);
         }
         dp = curRow;
     }
     return dp[M];
+}
+
+int main() {
+    vector<int> p = {4, 4, 7, 1};
+    vector<int> w = {4, 4, 7, 1};
+    int c = 8;
+
+    cout << dfs(p, w, c) << endl;
+    cout << memoization(p, w, c) << endl;
+    cout << dp(p, w, c) << endl;
+    cout << optimizedDp(p, w, c) << endl;
 }
