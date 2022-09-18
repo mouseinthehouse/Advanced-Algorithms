@@ -31,7 +31,7 @@ def dfsHelper(i, profit, weight, capacity):
 # Time: O(n * m), Space: O(n * m)
 # Where n is the number of items & m is the capacity.
 def memoization(profit, weight, capacity):
-    # A 2d array, with N rows and M colums
+    # A 2d array, with N rows and M + 1 columns, init with -1's
     N, M = len(profit), capacity
     cache = [[-1] * (M + 1) for _ in range(N)]
     return memoHelper(0, profit, weight, capacity, cache)
