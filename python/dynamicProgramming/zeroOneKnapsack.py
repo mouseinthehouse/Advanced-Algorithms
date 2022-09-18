@@ -55,7 +55,7 @@ def memoHelper(i, profit, weight, capacity, cache):
     return cache[i][capacity]
 
 
-# Memoization Solution
+# Dynamic Programming Solution
 # Time: O(n * m), Space: O(n * m)
 # Where n is the number of items & m is the capacity.
 def dp(profit, weight, capacity):
@@ -79,6 +79,29 @@ def dp(profit, weight, capacity):
     return dp[N-1][M]
 
 
+# Memory optimized Dynamic Programming Solution
+# Time: O(n * m), Space: O(m)
+def optimizedDp(profit, weight, capacity):
+    N, M = len(profit), capacity
+    dp = [0] * (M + 1)
+
+    # Fill the first row to reduce edge cases
+    for c in range(M + 1):
+        if weight[0] <= c:
+            dp[c] = profit[0] 
+
+    for i in range(1, N):
+        curRow = [0] * (M + 1)
+        for c in range(1, M + 1):
+            skip = dp[c]
+            include = 0
+            if c - weight[i] >= 0:
+                include = profit[i] + dp[c - weight[i]]
+            curRow[c] = max(include, skip)
+        dp = curRow
+    return dp[M]
+
+
 profit = [4, 4, 7, 1]
 weight = [5, 2, 3, 1]
 capacity = 8
@@ -87,3 +110,4 @@ capacity = 8
 print(dfs(profit, weight, capacity))
 print(memoization(profit, weight, capacity))
 print(dp(profit, weight, capacity))
+print(optimizedDp(profit, weight, capacity))
