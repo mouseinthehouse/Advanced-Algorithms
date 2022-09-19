@@ -1,9 +1,7 @@
 #include <vector>
-#include <unordered_map>
 #include <algorithm>
 
 using std::vector;
-using std::unordered_map;
 using std::max;
 
 // Given a list of N items, and a backpack with a
@@ -37,6 +35,7 @@ int dfsHelper(int i, vector<int>& profit, vector<int>& weight, int capacity) {
 int dfs(vector<int>& profit, vector<int>& weight, int capacity) {
     return dfsHelper(0, profit, weight, capacity);
 }
+
 
 // Memoization Solution
 // Time: O(n * m), Space: O(n * m)
