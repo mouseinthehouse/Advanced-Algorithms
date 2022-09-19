@@ -44,7 +44,7 @@ def dp(s1, s2):
     for i in range(N):
         if s1[i] == s2[0]:
             dp[i][0] = 1
-    
+
     for i in range(1, N):
         for j in range(1, M):
             if s1[i] == s2[j]:
@@ -68,11 +68,3 @@ def optimizedDp(s1, s2):
                 curRow[j+1] = max(dp[j + 1], curRow[j])
         dp = curRow
     return dp[M]
-
-
-# Result should be 2 for these three
-print(dfs("abc", "adaecb"))
-print(memoization("abc", "adaecb"))
-print(dp("abc", "adaecb"))
-# Result should be 3 for this
-print(optimizedDp("abcrex", "adaecbtuve"))
