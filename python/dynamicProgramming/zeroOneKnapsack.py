@@ -100,14 +100,3 @@ def optimizedDp(profit, weight, capacity):
             curRow[c] = max(include, skip)
         dp = curRow
     return dp[M]
-
-
-profit = [4, 4, 7, 1]
-weight = [5, 2, 3, 1]
-capacity = 8
-
-# Result should be 12
-print(dfs(profit, weight, capacity))
-print(memoization(profit, weight, capacity))
-print(dp(profit, weight, capacity))
-print(optimizedDp(profit, weight, capacity))

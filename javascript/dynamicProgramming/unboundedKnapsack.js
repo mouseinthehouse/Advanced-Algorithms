@@ -118,10 +118,3 @@ function optimizedDp(profit, weight, capacity) {
     }
     return dp[M];
 }
-p = [4, 4, 7, 1]
-w = [5, 2, 3, 1]
-c = 8
-console.log(dfs(p, w, c))
-console.log(memoization(p, w, c))
-console.log(dp(p, w, c))
-console.log(optimizedDp(p, w, c))
