@@ -44,30 +44,18 @@ function memoHelper(s1, s2, i1, i2, cache) {
 // Time: O(n * m), Space: O(n + m)
 function dp(s1, s2) {
     const N = s1.length, M = s2.length;
-    let dp = new Array(N).fill(new Array(M).fill(0));;
+    let dp = new Array(N+1).fill(new Array(M+1).fill(0));;
 
-    for (let i = 0; i < M; i++) {
-        if (s1.charAt(0) == s2.charAt(i)) {
-            dp[0][i] = 1;
-        }
-    }
     for (let i = 0; i < N; i++) {
-        if (s1.charAt(i) == s2.charAt(0)) {
-            dp[i][0] = 1;
-        }
-    }
-
-    for (let i = 1; i < N; i++) {
-        for (let j = 1; j < M; j++) {
+        for (let j = 0; j < M; j++) {
             if (s1.charAt(i) == s2.charAt(j)) {
-                dp[i][j] =  1 + dp[i-1][j-1];
+                dp[i+1][j+1] =  1 + dp[i][j];
             } else {
-                dp[i][j] =  Math.max(dp[i-1][j], 
-                                    dp[i][j-1]);
+                dp[i+1][j+1] =  Math.max(dp[i][j+1], dp[i+1][j]);
             }
         }
     }
-    return dp[N-1][M-1];
+    return dp[N][M];
 }
 
 // Time: O(n * m), Space: O(m)

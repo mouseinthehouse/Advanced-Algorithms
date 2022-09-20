@@ -1,13 +1,8 @@
 #include <vector>
 #include <string>
-#include <unordered_map>
 #include <algorithm>
-#include <iostream>
 
-using std::cout;
-using std::endl;
 using std::vector;
-using std::unordered_map;
 using std::max;
 using std::string;
 
@@ -57,38 +52,24 @@ int memoization(string& s1, string& s2) {
 }
 
 
-// Dynamic Programming Solution
 // Time: O(n * m), Space: O(n * m)
-// Where n is the number of items & m is the capacity.
 int dp(string& s1, string& s2) {
     int N = s1.size(), M = s2.size();
-    vector<vector<int>> dp(N, vector<int>(M, 0));
+    vector<vector<int>> dp(N + 1, vector<int>(M + 1, 0));
 
-    for (int i = 0; i < M; i++) {
-        if (s1[0] == s2[i]) {
-            dp[0][i] = 1;
-        }
-    }
     for (int i = 0; i < N; i++) {
-        if (s1[i] == s2[0]) {
-            dp[i][0] = 1;
-        }
-    }
-
-    for (int i = 1; i < N; i++) {
-        for (int j = 1; j < M; j++) {
+        for (int j = 0; j < M; j++) {
             if (s1[i] == s2[j]) {
-                dp[i][j] = 1 + dp[i-1][j-1];
+                dp[i+1][j+1] = 1 + dp[i][j];
             } else {
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j]);
             }
         }
     }
-    return dp[N-1][M-1];
+    return dp[N][M];
 }
 
 
-// Memory optimized Dynamic Programming Solution
 // Time: O(n * m), Space: O(m)
 int optimizedDp(string& s1, string& s2) {
     int N = s1.size(), M = s2.size();

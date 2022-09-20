@@ -46,30 +46,18 @@ public class Lcs {
     // Time: O(n * m), Space: O(n + m)
     public static int dp(String s1, String s2) {
         int N = s1.length(), M = s2.length();
-        char[][] dp = new char[N][M];
+        char[][] dp = new char[N+1][M+1];
 
-        for (int i = 0; i < M; i++) {
-            if (s1.charAt(0) == s2.charAt(i)) {
-                dp[0][i] = 1;
-            }
-        }
         for (int i = 0; i < N; i++) {
-            if (s1.charAt(i) == s2.charAt(0)) {
-                dp[i][0] = 1;
-            }
-        }
-
-        for (int i = 1; i < N; i++) {
-            for (int j = 1; j < M; j++) {
+            for (int j = 0; j < M; j++) {
                 if (s1.charAt(i) == s2.charAt(j)) {
-                    dp[i][j] = (char) (1 + dp[i-1][j-1]);
+                    dp[i+1][j+1] = (char) (1 + dp[i][j]);
                 } else {
-                    dp[i][j] = (char) Math.max(dp[i-1][j], 
-                                        dp[i][j-1]);
+                    dp[i+1][j+1] = (char) Math.max(dp[i][j+1], dp[i+1][j]);
                 }
             }
         }
-        return dp[N-1][M-1];
+        return dp[N][M];
     }
 
     // Time: O(n * m), Space: O(m)
