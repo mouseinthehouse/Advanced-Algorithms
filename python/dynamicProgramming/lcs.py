@@ -36,22 +36,15 @@ def memoHelper(s1, s2, i1, i2, cache):
 # Time: O(n * m), Space: O(n + m)
 def dp(s1, s2):
     N, M = len(s1), len(s2)
-    dp = [[0] * M for _ in range(N)]
+    dp = [[0] * (M+1) for _ in range(N+1)]
 
-    for i in range(M):
-        if s1[0] == s2[i]:
-            dp[0][i] = 1
     for i in range(N):
-        if s1[i] == s2[0]:
-            dp[i][0] = 1
-
-    for i in range(1, N):
-        for j in range(1, M):
+        for j in range(M):
             if s1[i] == s2[j]:
-                dp[i][j] = 1 + dp[i-1][j-1]
+                dp[i+1][j+1] = 1 + dp[i][j]
             else:
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-    return dp[N-1][M-1]
+                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])
+    return dp[N][M]
 
 
 # Time: O(n * m), Space: O(m)
