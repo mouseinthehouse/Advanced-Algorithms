@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Lcs {
     
     // Time: O(2^(n + m)), Space: O(n + m)
@@ -22,6 +23,9 @@ public class Lcs {
     public static int memoization(String s1, String s2) {
         int N = s1.length(), M = s2.length();
         int[][] cache = new int[N][M];
+        for (int[] row: cache) {
+            Arrays.fill(row, -1);
+        }
         return memoHelper(s1, s2, 0, 0, cache);
     }
 
@@ -29,8 +33,7 @@ public class Lcs {
         if (i1 == s1.length() || i2 == s2.length()) {
             return 0;
         }
-
-        if (cache[i1][i2] != 0) {
+        if (cache[i1][i2] != -1) {
             return cache[i1][i2];
         }
 
