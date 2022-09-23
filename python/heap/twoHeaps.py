@@ -1,16 +1,10 @@
-# Finding medians is hard, 
-# easiest way is with a sorted array n*logn.
-# But what if we need to add to the list,
-# Can we do better? Two heaps.
-
-# Test here: https://leetcode.com/problems/find-median-from-data-stream/
-# You'll have to change a couple of the function names.
+import heapq
 
 class Median:
     def __init__(self):
         self.small, self.large = [], []
 
-    def insert(self, num: int) -> None:
+    def insert(self, num):
         # Push to the max heap and swap with min heap if needed.
         heapq.heappush(self.small, -1 * num)
         if (self.small and self.large and (-1 * self.small[0]) > self.large[0]):
@@ -25,7 +19,7 @@ class Median:
             val = heapq.heappop(self.large)
             heapq.heappush(self.small, -1 * val)
         
-    def getMedian(self) -> float:
+    def getMedian(self):
         if len(self.small) > len(self.large):
             return -1 * self.small[0]
         elif len(self.large) > len(self.small):
