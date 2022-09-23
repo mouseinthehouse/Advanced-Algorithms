@@ -28,7 +28,7 @@ function shortestPath(edges, n, src) {
         for (let pair of adj[n1]) {
             let {neighbor, w2} = pair;
             if (!shortest.hasOwnProperty(neighbor)) {
-                minHeap.add([w1 + w2, n2]);
+                minHeap.enqueue([w1 + w2, n2]);
             }
         }
     } 
