@@ -1,4 +1,4 @@
-import { MinPriorityQueue } from '@datastructures-js/priority-queue';
+import { MinPriorityQueue, MaxPriorityQueue } from '@datastructures-js/priority-queue';
 
 class Median {
 
