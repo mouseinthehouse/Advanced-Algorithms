@@ -4,7 +4,6 @@ def permutationsRecursive(nums):
     return helper(0, nums)
         
 def helper(i, nums):   
-    # base case
     if i == len(nums):
         return [[]]
     
@@ -21,9 +20,8 @@ def helper(i, nums):
 # Time: O(n^2 * n!)
 # TEST HERE: https://leetcode.com/problems/permutations/
 def permutationsIterative(nums):
-    perms = deque()
-    perms.append([])
-    
+    perms = [[]]
+
     for n in nums:
         nextPerms = []
         for p in perms:

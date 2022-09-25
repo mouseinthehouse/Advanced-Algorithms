@@ -2,7 +2,8 @@
 # TEST HERE: https://leetcode.com/problems/subsets/
 def subsetsWithoutDuplicates(nums):
     subsets, curSet = [], []
-    return helper(0, nums, curSet, subsets)
+    helper(0, nums, curSet, subsets)
+    return subsets
 
 def helper(i, nums, curSet, subsets):
     if i >= len(nums):
@@ -23,7 +24,8 @@ def helper(i, nums, curSet, subsets):
 def subsetsWithDuplicates(nums):
     nums.sort()
     subsets, curSet = [], []
-    return helper2(0, nums, curSet, subsets)
+    helper2(0, nums, curSet, subsets)
+    return subsets
 
 def helper2(i, nums, curSet, subsets):
     if i >= len(nums):
