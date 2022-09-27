@@ -1,7 +1,6 @@
 # Given n numbers (1 - n), return all possible combinations
 # of size k. (n choose k math problem).
 # Time: O(k * 2^n)
-# TEST HERE: https://leetcode.com/problems/combinations/
 def combinations(n, k):
     combs = []
     helper(1, [], combs, n, k)

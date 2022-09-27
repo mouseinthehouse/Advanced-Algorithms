@@ -1,5 +1,4 @@
 # Time: O(n * 2^n), Space: O(n)
-# TEST HERE: https://leetcode.com/problems/subsets/
 def subsetsWithoutDuplicates(nums):
     subsets, curSet = [], []
     helper(0, nums, curSet, subsets)
@@ -20,7 +19,6 @@ def helper(i, nums, curSet, subsets):
 
 
 # Time: O(n * 2^n), Space: O(n)
-# TEST HERE: https://leetcode.com/problems/subsets-ii/
 def subsetsWithDuplicates(nums):
     nums.sort()
     subsets, curSet = [], []
