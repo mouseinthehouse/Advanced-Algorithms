@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Subset {
-    
+    // Time: O(n * 2^n), Space: O(n)
     public static List<List<Integer>> subsetsWithoutDuplicates(int[] nums) {
         List<List<Integer>> subsets = new ArrayList<>();
         List<Integer> curSet = new ArrayList<>();

@@ -2,6 +2,9 @@
 
 using std::vector;
 
+// Given n numbers (1 - n), return all possible combinations
+// of size k. (n choose k math problem).
+// Time: O(k * 2^n)
 vector<vector<int>> combinations(int n, int k) {
     vector<vector<int>> combs;
     vector<int> curCombs;
