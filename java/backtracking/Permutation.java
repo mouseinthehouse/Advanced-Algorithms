@@ -14,7 +14,6 @@ public class Permutation {
             res.add(new ArrayList<>());
             return res;
         }
-
         List<List<Integer>> resPerms = new ArrayList<>();
         List<List<Integer>> perms = helper(i + 1, nums);
         for (List<Integer> p : perms) {

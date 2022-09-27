@@ -1,3 +1,4 @@
+// Time: O(n * 2^n), Space: O(n)
 function subsetsWithoutDuplicates(nums) {
     let subsets = [];
     let curSet = [];
@@ -10,7 +11,6 @@ function helper(i, nums, curSet, subsets) {
         subsets.push([...curSet]);
         return;
     }
-
     // decision to include nums[i]
     curSet.push(nums[i]);
     helper(i + 1, nums, curSet, subsets);
@@ -30,18 +30,15 @@ function subsetsWithDuplicates(nums) {
     return subsets;
 }
 
-
 function helper2( i, nums, curSet, subsets) {
     if (i >= nums.length) {
         subsets.push([...curSet]);
         return;
     }
-
     // decision to include nums[i]
     curSet.push(nums[i]);
     helper2(i + 1, nums, curSet, subsets);
     curSet.pop();
-
     // decision NOT to include nums[i]
     while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
         i++;

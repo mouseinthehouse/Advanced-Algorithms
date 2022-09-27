@@ -11,18 +11,15 @@ public class Subset {
         return subsets;
     }
 
-   
     public static void helper(int i, int[] nums, List<Integer> curSet, List<List<Integer>> subsets) {
         if (i >= nums.length) {
             subsets.add(new ArrayList<>(curSet));
             return;
         }
-
         // decision to include nums[i]
         curSet.add(nums[i]);
         helper(i + 1, nums, curSet, subsets);
         curSet.remove(curSet.size() - 1);
-    
         // decision NOT to include nums[i]
         helper(i + 1, nums, curSet, subsets);
     }
@@ -36,14 +33,12 @@ public class Subset {
         helper2(0, nums, curSet, subsets);
         return subsets;
     }
-
    
     public static void helper2(int i, int[] nums, List<Integer> curSet, List<List<Integer>> subsets) {
         if (i >= nums.length) {
             subsets.add(new ArrayList<>(curSet));
             return;
         }
-
         // decision to include nums[i]
         curSet.add(nums[i]);
         helper2(i + 1, nums, curSet, subsets);

@@ -20,7 +20,6 @@ public class Combination {
         if (i > n) {
             return;
         }
-
         // decision to include i
         curComb.add(i);
         helper(i + 1, curComb, combs, n, k);
@@ -28,7 +27,6 @@ public class Combination {
         
         // decision to NOT include i
         helper(i + 1, curComb, combs, n, k);
-    
     }
 
 
@@ -47,7 +45,6 @@ public class Combination {
         if (i > n) {
             return;
         }
-
         for (int j = i; j < n + 1; j++) {
             curComb.add(j);
             helper2(j + 1, curComb, combs, n, k);

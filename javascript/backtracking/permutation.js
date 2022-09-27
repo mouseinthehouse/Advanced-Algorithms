@@ -7,7 +7,6 @@ function helper(i, nums) {
     if (i == nums.length) {
         return [[]];
     }
-
     let resPerms = [];
     let perms = helper(i + 1, nums);
     for (let p of perms) {
